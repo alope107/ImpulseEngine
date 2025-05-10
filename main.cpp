@@ -17,6 +17,8 @@
       3. This notice may not be removed or altered from any source distribution.
 */
 
+#include <cstdio>
+
 #include "Precompiled.h"
 
 #define ESC_KEY 27
@@ -137,24 +139,86 @@ void PhysicsLoop( void )
   glutSwapBuffers( );
 }
 
+
+
+void display() {
+  glClear(GL_COLOR_BUFFER_BIT);
+  glutSwapBuffers(); // Required if using GLUT_DOUBLE
+}
+
+// int main(int argc, char** argv) {
+//   glutInit(&argc, argv);
+//   glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);
+//   glutInitWindowSize(800, 600);
+  
+// //   glutInitContextVersion(3, 2);
+// // glutInitContextProfile(GLUT_CORE_PROFILE);
+//   int windowID = glutCreateWindow("PhyEngine");
+//   if (windowID == 0) {
+//     fprintf(stderr, "Error: Failed to create OpenGL window.\n");
+//     return 1;
+//   }
+
+//   // Check OpenGL context
+//   fprintf(stderr, "bleh\n");
+//   const GLubyte *vendor = glGetString(GL_VENDOR);
+//   fprintf(stderr, "blah\n");
+//   if (vendor == nullptr) {
+//     fprintf(stderr, "Error: OpenGL context not properly created.\n");
+//     return 1;
+//   }
+
+//   fprintf(stderr, "GL Vendor: %s\n", vendor);
+
+//   // Set a minimal display function
+//   glutDisplayFunc(display);
+//   glutIdleFunc(display);
+
+//   // Run the main loop
+//   glutMainLoop();
+
+//   return 0;
+// }
+
+
 int main(int argc, char** argv)
 {
+  fprintf(stderr, "Got here");
   glutInit(&argc, argv);
   glutInitDisplayMode( GLUT_RGBA | GLUT_DOUBLE );
   glutInitWindowSize( 800, 600 );
-  glutCreateWindow( "PhyEngine" );
+  int windowID = glutCreateWindow("PhyEngine");
+if (windowID == 0) {
+  fprintf(stderr, "Error: Failed to create OpenGL window.\n");
+  exit(1);
+} else {
+  fprintf(stderr, "OK\n");
+}
   glutDisplayFunc( PhysicsLoop );
   glutKeyboardFunc( Keyboard );
   glutMouseFunc( Mouse );
   glutIdleFunc( PhysicsLoop );
-
+  fprintf(stderr, "Got here!!!");
+  const GLubyte *vendor = glGetString(GL_VENDOR);
+  fprintf(stderr, "sdfsf");
+// if (vendor == nullptr) {
+//   fprintf(stderr, "Error: OpenGL context not properly created.\n");
+// } else {
+//   fprintf(stderr, "GL Vendor: %s\n", vendor);
+// }
+  fprintf(stderr, "GOT HERE");
   glMatrixMode( GL_PROJECTION );
+  fprintf(stderr, "GOT HERE");
   glPushMatrix( );
+  fprintf(stderr, "GOT HERE");
   glLoadIdentity( );
+  fprintf(stderr, "GOT HERE");
   gluOrtho2D( 0, 80, 60, 0 );
   glMatrixMode( GL_MODELVIEW );
   glPushMatrix( );
   glLoadIdentity( );
+
+  fprintf(stderr, "GOT HERE");
 
   Circle c( 5.0f );
   Body *b = scene.Add( &c, 40, 40 );
@@ -171,3 +235,39 @@ int main(int argc, char** argv)
 
   return 0;
 }
+
+// #include <GL/freeglut.h>
+// #include <cstdio>
+
+// void display() {
+//   GLint contextReady;
+//   glGetIntegerv(GL_DRAW_BUFFER, &contextReady);
+//   if (contextReady == 0) {
+//     fprintf(stderr, "Error: OpenGL context not properly created.\n");
+//     exit(1);
+//   }
+
+//   glClear(GL_COLOR_BUFFER_BIT);
+//   glutSwapBuffers();
+// }
+
+
+// int main(int argc, char** argv) {
+//   glutInit(&argc, argv);
+//   glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);
+//   glutInitWindowSize(800, 600);
+//   glutCreateWindow("OpenGL Test");
+
+//   // Just try a glClear before touching glGetString
+//   fprintf(stderr, "kaya toats");
+//   glutDisplayFunc(display);
+//   glutInitContextVersion(2, 1);
+// glutInitContextProfile(GLUT_COMPATIBILITY_PROFILE);
+//   fprintf(stderr, "kaya toats");
+//   glutMainLoop();
+//   fprintf(stderr, "kaya toats");
+
+//   return 0;
+// }
+
+
