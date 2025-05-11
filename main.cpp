@@ -36,24 +36,24 @@ void Mouse( int button, int state, int x, int y )
   if(state == GLUT_DOWN)
     switch(button)
     {
+    // case GLUT_LEFT_BUTTON:
+    //   {
+    //     PolygonShape poly;
+    //     uint32 count = (uint32)Random( 3, MaxPolyVertexCount );
+    //     Vec2 *vertices = new Vec2[count];
+    //     real e = Random( 5, 10 );
+    //     for(uint32 i = 0; i < count; ++i)
+    //       vertices[i].Set( Random( -e, e ), Random( -e, e ) );
+    //     poly.Set( vertices, count );
+    //     Body *b = scene.Add( &poly, x, y );
+    //     b->SetOrient( Random( -PI, PI ) );
+    //     b->restitution = 0.2f;
+    //     b->dynamicFriction = 0.2f;
+    //     b->staticFriction = 0.4f;
+    //     delete [] vertices;
+    //   }
+      // break;
     case GLUT_LEFT_BUTTON:
-      {
-        PolygonShape poly;
-        uint32 count = (uint32)Random( 3, MaxPolyVertexCount );
-        Vec2 *vertices = new Vec2[count];
-        real e = Random( 5, 10 );
-        for(uint32 i = 0; i < count; ++i)
-          vertices[i].Set( Random( -e, e ), Random( -e, e ) );
-        poly.Set( vertices, count );
-        Body *b = scene.Add( &poly, x, y );
-        b->SetOrient( Random( -PI, PI ) );
-        b->restitution = 0.2f;
-        b->dynamicFriction = 0.2f;
-        b->staticFriction = 0.4f;
-        delete [] vertices;
-      }
-      break;
-    case GLUT_RIGHT_BUTTON:
       {
         Circle c( Random( 1.0f, 3.0f ) );
         Body *b = scene.Add( &c, x, y );
